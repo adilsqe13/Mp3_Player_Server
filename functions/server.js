@@ -20,7 +20,7 @@ await Audios.create({ public_id , audioUrl, fileName});
       res.status(200).json({ success: true });
 });
 
-app.get('/api/get-all-audios', async(req, res)=>{
+app.get('/.netlify/functions/server/api/get-all-audios', async(req, res)=>{
 const allAudios = await Audios.find();
 res.status(200).json(allAudios);
 });
