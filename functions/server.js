@@ -1,7 +1,7 @@
 require('dotenv').config();
 const serverless = require('serverless-http');
 const connectToDtabase = require("./db");
-const Audios = require('./Models/Audio');
+const Audios = require('./models/Audio');
 const express = require('express');
 const cors = require('cors');
 const port = process.env.PORT;
