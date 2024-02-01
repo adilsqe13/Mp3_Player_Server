@@ -9,7 +9,6 @@ const port = process.env.PORT;
 connectToDtabase();
 const app = express();
 
-
 // middle-Ware
 app.use(express.json());
 app.use(cors());
