@@ -1,5 +1,5 @@
 require('dotenv').config();
-// const serverless = require('serverless-http');
+const serverless = require('serverless-http');
 const connectToDtabase = require("./db");
 const Audios = require('./Models/Audio');
 const express = require('express');
@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 
-app.post('/api/upload-audio', async(req, res)=>{
+app.post('/.netlify/functions/server/api/upload-audio', async(req, res)=>{
 const {audioUrl , public_id, fileName} = req.body;
 await Audios.create({ public_id , audioUrl, fileName});
       res.status(200).json({ success: true });
@@ -35,4 +35,4 @@ app.listen(port, () => {
     console.log(`Server is running at port ${port}`);
 });
 
-// module.exports.handler = serverless(app);
+module.exports.handler = serverless(app);
