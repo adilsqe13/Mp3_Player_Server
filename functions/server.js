@@ -27,6 +27,30 @@ res.status(200).json(allAudios);
 
 
 
+//POST - for info-weather
+app.post('/.netlify/functions/server/api/add-user', async(req, res) => {
+    const { username, email, city } = req.body;
+    const user = new Users({
+        username: username,
+        email: email,
+        city: city
+      })
+    await user.save();
+    res.json({success:true});
+  });
+  
+  app.get('/.netlify/functions/server/api/get-users', async(req, res) => {
+    const users = await Users.find();
+    res.json({success:true, users:users});
+  });
+  
+  app.put('/.netlify/functions/server/api/update-active', async(req, res) => {
+    const email = req.body.email;
+    const isChecked = req.body.isChecked;
+    await Users.updateOne({ email: email }, { $set: { active: isChecked } });
+    res.status(200).json();
+  });
+
 
 
 // Connect to the server
